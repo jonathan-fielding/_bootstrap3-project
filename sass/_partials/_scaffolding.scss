@@ -1,0 +1,63 @@
+html{
+	font-size:62.5%;
+}
+
+body{
+	font-size:$font-size-small;
+}
+
+p{
+	color:$primaryBrandColor;
+	margin-bottom:25px;
+
+	&.intro{
+		font-size:$font-size-medium;
+		font-weight:bold;
+	}
+}
+
+.container{
+	&.masthead{
+		padding:8px 25px;
+		background-color:$primaryBrandColor;
+
+		a.brand{
+			background: url('../images/logo.png') no-repeat;
+			width:121px;
+			height:44px;
+			display:block;
+			float:left;
+			@include hide-text();
+		}
+
+		p{
+			float:right;
+			padding:0;
+			margin:0;
+			color:$logoBackgroundColor;
+			font-size:$font-size-extra-large;
+			text-transform: uppercase;
+			line-height:18px;
+			font-weight:normal;
+		}
+	}
+}
+
+
+@media(max-width:479px){
+	.container{
+		&.masthead{
+			text-align:center;
+
+			a.brand, p{
+				float:none;
+			}
+
+			a.brand{
+				width:121px;
+				margin:10px auto;
+			}
+		}
+	}
+	
+}

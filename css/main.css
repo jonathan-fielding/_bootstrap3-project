@@ -314,8 +314,8 @@ html {
 /* line 22, ../sass/bootstrap/_scaffolding.scss */
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857;
+  font-size: 12px;
+  line-height: 1.5;
   color: #333333;
   background-color: white; }
 
@@ -366,7 +366,7 @@ img {
 /* line 89, ../sass/bootstrap/_scaffolding.scss */
 .img-thumbnail, .thumbnail {
   padding: 4px;
-  line-height: 1.42857;
+  line-height: 1.2;
   background-color: white;
   border: 1px solid #dddddd;
   border-radius: 4px;
@@ -382,8 +382,8 @@ img {
 
 /* line 109, ../sass/bootstrap/_scaffolding.scss */
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   border: 0;
   border-top: 1px solid #eeeeee; }
 
@@ -400,18 +400,18 @@ hr {
 
 /* line 9, ../sass/bootstrap/_type.scss */
 p {
-  margin: 0 0 10px; }
+  margin: 0 0 6px; }
 
 /* line 12, ../sass/bootstrap/_type.scss */
 .lead {
-  margin-bottom: 20px;
-  font-size: 16.1px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
   font-weight: 200;
   line-height: 1.4; }
   @media (min-width: 768px) {
     /* line 12, ../sass/bootstrap/_type.scss */
     .lead {
-      font-size: 21px; } }
+      font-size: 15px; } }
 
 /* line 28, ../sass/bootstrap/_type.scss */
 small {
@@ -474,64 +474,64 @@ h1, h2, h3, h4, h5, h6,
 h1,
 h2,
 h3 {
-  margin-top: 20px;
-  margin-bottom: 10px; }
+  margin-top: 12px;
+  margin-bottom: 6px; }
 
 /* line 70, ../sass/bootstrap/_type.scss */
 h4,
 h5,
 h6 {
-  margin-top: 10px;
-  margin-bottom: 10px; }
+  margin-top: 6px;
+  margin-bottom: 6px; }
 
 /* line 75, ../sass/bootstrap/_type.scss */
 h1, .h1 {
-  font-size: 36px; }
+  font-size: 26px; }
 
 /* line 76, ../sass/bootstrap/_type.scss */
 h2, .h2 {
-  font-size: 30px; }
+  font-size: 16px; }
 
 /* line 77, ../sass/bootstrap/_type.scss */
 h3, .h3 {
-  font-size: 24px; }
+  font-size: 17px; }
 
 /* line 78, ../sass/bootstrap/_type.scss */
 h4, .h4 {
-  font-size: 18px; }
+  font-size: 13px; }
 
 /* line 79, ../sass/bootstrap/_type.scss */
 h5, .h5 {
-  font-size: 14px; }
+  font-size: 10px; }
 
 /* line 80, ../sass/bootstrap/_type.scss */
 h6, .h6 {
-  font-size: 12px; }
+  font-size: 9px; }
 
 /* line 82, ../sass/bootstrap/_type.scss */
 h1 small, .h1 small {
-  font-size: 24px; }
+  font-size: 17px; }
 
 /* line 83, ../sass/bootstrap/_type.scss */
 h2 small, .h2 small {
-  font-size: 18px; }
+  font-size: 13px; }
 
 /* line 85, ../sass/bootstrap/_type.scss */
 h3 small, .h3 small,
 h4 small, .h4 small {
-  font-size: 14px; }
+  font-size: 10px; }
 
 /* line 91, ../sass/bootstrap/_type.scss */
 .page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
+  padding-bottom: 5px;
+  margin: 24px 0 12px;
   border-bottom: 1px solid #eeeeee; }
 
 /* line 104, ../sass/bootstrap/_type.scss */
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: 10px; }
+  margin-bottom: 6px; }
   /* line 108, ../sass/bootstrap/_type.scss */
   ul ul,
   ul ol,
@@ -552,12 +552,12 @@ ol {
 
 /* line 131, ../sass/bootstrap/_type.scss */
 dl {
-  margin-bottom: 20px; }
+  margin-bottom: 12px; }
 
 /* line 135, ../sass/bootstrap/_type.scss */
 dt,
 dd {
-  line-height: 1.42857; }
+  line-height: 1.2; }
 
 /* line 138, ../sass/bootstrap/_type.scss */
 dt {
@@ -602,12 +602,12 @@ abbr.initialism {
 
 /* line 182, ../sass/bootstrap/_type.scss */
 blockquote {
-  padding: 10px 20px;
-  margin: 0 0 20px;
+  padding: 6px 12px;
+  margin: 0 0 12px;
   border-left: 5px solid #eeeeee; }
   /* line 186, ../sass/bootstrap/_type.scss */
   blockquote p {
-    font-size: 17.5px;
+    font-size: 12.5px;
     font-weight: 300;
     line-height: 1.25; }
   /* line 191, ../sass/bootstrap/_type.scss */
@@ -616,7 +616,7 @@ blockquote {
   /* line 194, ../sass/bootstrap/_type.scss */
   blockquote small {
     display: block;
-    line-height: 1.42857;
+    line-height: 1.2;
     color: #999999; }
     /* line 198, ../sass/bootstrap/_type.scss */
     blockquote small:before {
@@ -648,9 +648,9 @@ blockquote:after {
 /* line 233, ../sass/bootstrap/_type.scss */
 address {
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   font-style: normal;
-  line-height: 1.42857; }
+  line-height: 1.2; }
 
 /* line 8, ../sass/bootstrap/_code.scss */
 code,
@@ -669,10 +669,10 @@ code {
 /* line 23, ../sass/bootstrap/_code.scss */
 pre {
   display: block;
-  padding: 9.5px;
-  margin: 0 0 10px;
-  font-size: 13px;
-  line-height: 1.42857;
+  padding: 5.5px;
+  margin: 0 0 6px;
+  font-size: 9px;
+  line-height: 1.2;
   word-break: break-all;
   word-wrap: break-word;
   color: #333333;
@@ -681,7 +681,7 @@ pre {
   border-radius: 4px; }
   /* line 37, ../sass/bootstrap/_code.scss */
   pre.prettyprint {
-    margin-bottom: 20px; }
+    margin-bottom: 12px; }
   /* line 42, ../sass/bootstrap/_code.scss */
   pre code {
     padding: 0;
@@ -700,8 +700,8 @@ pre {
 .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px; }
+  padding-left: 10px;
+  padding-right: 10px; }
   /* line 21, ../sass/bootstrap/_mixins.scss */
   .container:before, .container:after {
     content: " ";
@@ -714,8 +714,8 @@ pre {
 
 /* line 12, ../sass/bootstrap/_grid.scss */
 .row {
-  margin-left: -15px;
-  margin-right: -15px; }
+  margin-left: -10px;
+  margin-right: -10px; }
   /* line 21, ../sass/bootstrap/_mixins.scss */
   .row:before, .row:after {
     content: " ";
@@ -777,8 +777,8 @@ pre {
 .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px; }
+  padding-left: 10px;
+  padding-right: 10px; }
 
 /* line 92, ../sass/bootstrap/_grid.scss */
 .col-xs-1,
@@ -845,7 +845,7 @@ pre {
 @media (min-width: 768px) {
   /* line 118, ../sass/bootstrap/_grid.scss */
   .container {
-    max-width: 750px; }
+    max-width: 740px; }
 
   /* line 132, ../sass/bootstrap/_grid.scss */
   .col-sm-1,
@@ -1043,7 +1043,7 @@ pre {
 @media (min-width: 992px) {
   /* line 196, ../sass/bootstrap/_grid.scss */
   .container {
-    max-width: 970px; }
+    max-width: 960px; }
 
   /* line 209, ../sass/bootstrap/_grid.scss */
   .col-md-1,
@@ -1253,7 +1253,7 @@ pre {
 @media (min-width: 1200px) {
   /* line 276, ../sass/bootstrap/_grid.scss */
   .container {
-    max-width: 1170px; }
+    max-width: 960px; }
 
   /* line 290, ../sass/bootstrap/_grid.scss */
   .col-lg-1,
@@ -1472,7 +1472,7 @@ th {
 /* line 17, ../sass/bootstrap/_tables.scss */
 .table {
   width: 100%;
-  margin-bottom: 20px; }
+  margin-bottom: 12px; }
   /* line 26, ../sass/bootstrap/_tables.scss */
   .table thead > tr > th,
   .table thead > tr > td,
@@ -1481,7 +1481,7 @@ th {
   .table tfoot > tr > th,
   .table tfoot > tr > td {
     padding: 8px;
-    line-height: 1.42857;
+    line-height: 1.2;
     vertical-align: top;
     border-top: 1px solid #dddddd; }
   /* line 35, ../sass/bootstrap/_tables.scss */
@@ -1679,8 +1679,8 @@ legend {
   display: block;
   width: 100%;
   padding: 0;
-  margin-bottom: 20px;
-  font-size: 21px;
+  margin-bottom: 12px;
+  font-size: 15px;
   line-height: inherit;
   color: #333333;
   border: 0;
@@ -1750,10 +1750,10 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 .form-control {
   display: block;
   width: 100%;
-  height: 34px;
+  height: 26px;
   padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857;
+  font-size: 10px;
+  line-height: 1.2;
   color: #555555;
   vertical-align: middle;
   background-color: white;
@@ -1786,7 +1786,7 @@ textarea.form-control {
 .radio,
 .checkbox {
   display: block;
-  min-height: 20px;
+  min-height: 12px;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-left: 20px;
@@ -1869,9 +1869,9 @@ textarea.input-sm, .input-group-sm > textarea.form-control,
 .input-lg, .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
-  height: 45px;
+  height: 43px;
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.33;
   border-radius: 6px; }
 
@@ -1879,8 +1879,8 @@ textarea.input-sm, .input-group-sm > textarea.form-control,
 select.input-lg, .input-group-lg > select.form-control,
 .input-group-lg > select.input-group-addon,
 .input-group-lg > .input-group-btn > select.btn {
-  height: 45px;
-  line-height: 45px; }
+  height: 43px;
+  line-height: 43px; }
 
 /* line 725, ../sass/bootstrap/_mixins.scss */
 textarea.input-lg, .input-group-lg > textarea.form-control,
@@ -1995,8 +1995,8 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
   padding-top: 7px; }
 /* line 340, ../sass/bootstrap/_forms.scss */
 .form-horizontal .form-group {
-  margin-left: -15px;
-  margin-right: -15px; }
+  margin-left: -10px;
+  margin-right: -10px; }
   /* line 21, ../sass/bootstrap/_mixins.scss */
   .form-horizontal .form-group:before, .form-horizontal .form-group:after {
     content: " ";
@@ -2016,9 +2016,9 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: normal;
-  line-height: 1.42857;
+  line-height: 1.2;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
@@ -2237,7 +2237,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
 /* line 124, ../sass/bootstrap/_buttons.scss */
 .btn-lg, .btn-group-lg > .btn {
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.33;
   border-radius: 6px; }
 
@@ -3144,7 +3144,7 @@ input[type="button"].btn-block {
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-  font-size: 14px;
+  font-size: 10px;
   background-color: white;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -3159,7 +3159,7 @@ input[type="button"].btn-block {
   /* line 59, ../sass/bootstrap/_dropdowns.scss */
   .dropdown-menu .divider {
     height: 1px;
-    margin: 9px 0;
+    margin: 5px 0;
     overflow: hidden;
     background-color: #e5e5e5; }
   /* line 64, ../sass/bootstrap/_dropdowns.scss */
@@ -3168,7 +3168,7 @@ input[type="button"].btn-block {
     padding: 3px 20px;
     clear: both;
     font-weight: normal;
-    line-height: 1.42857;
+    line-height: 1.2;
     color: #333333;
     white-space: nowrap; }
 
@@ -3209,7 +3209,7 @@ input[type="button"].btn-block {
   display: block;
   padding: 3px 20px;
   font-size: 12px;
-  line-height: 1.42857;
+  line-height: 1.2;
   color: #999999; }
 
 /* line 143, ../sass/bootstrap/_dropdowns.scss */
@@ -3490,7 +3490,7 @@ input[type="button"].btn-block {
 /* line 59, ../sass/bootstrap/_input-groups.scss */
 .input-group-addon {
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: normal;
   line-height: 1;
   text-align: center;
@@ -3509,7 +3509,7 @@ input[type="button"].btn-block {
   .input-group-lg > .input-group-addon,
   .input-group-lg > .input-group-btn > .input-group-addon.btn {
     padding: 10px 16px;
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 6px; }
   /* line 83, ../sass/bootstrap/_input-groups.scss */
   .input-group-addon input[type="radio"],
@@ -3600,7 +3600,7 @@ input[type="button"].btn-block {
   /* line 55, ../sass/bootstrap/_navs.scss */
   .nav .nav-divider {
     height: 1px;
-    margin: 9px 0;
+    margin: 5px 0;
     overflow: hidden;
     background-color: #e5e5e5; }
   /* line 61, ../sass/bootstrap/_navs.scss */
@@ -3617,7 +3617,7 @@ input[type="button"].btn-block {
     /* line 79, ../sass/bootstrap/_navs.scss */
     .nav-tabs > li > a {
       margin-right: 2px;
-      line-height: 1.42857;
+      line-height: 1.2;
       border: 1px solid transparent;
       border-radius: 4px 4px 0 0; }
       /* line 84, ../sass/bootstrap/_navs.scss */
@@ -3720,7 +3720,7 @@ input[type="button"].btn-block {
   position: relative;
   z-index: 1000;
   min-height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   border: 1px solid transparent; }
   /* line 21, ../sass/bootstrap/_mixins.scss */
   .navbar:before, .navbar:after {
@@ -3754,8 +3754,8 @@ input[type="button"].btn-block {
 .navbar-collapse {
   max-height: 340px;
   overflow-x: visible;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
   border-top: 1px solid transparent;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   -webkit-overflow-scrolling: touch; }
@@ -3788,10 +3788,10 @@ input[type="button"].btn-block {
         overflow-y: visible; }
       /* line 82, ../sass/bootstrap/_navbar.scss */
       .navbar-collapse .navbar-nav.navbar-left:first-child {
-        margin-left: -15px; }
+        margin-left: -10px; }
       /* line 85, ../sass/bootstrap/_navbar.scss */
       .navbar-collapse .navbar-nav.navbar-right:last-child {
-        margin-right: -15px; }
+        margin-right: -10px; }
       /* line 88, ../sass/bootstrap/_navbar.scss */
       .navbar-collapse .navbar-text:last-child {
         margin-right: 0; } }
@@ -3799,8 +3799,8 @@ input[type="button"].btn-block {
 /* line 100, ../sass/bootstrap/_navbar.scss */
 .container > .navbar-header,
 .container > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px; }
+  margin-right: -10px;
+  margin-left: -10px; }
   @media (min-width: 768px) {
     /* line 100, ../sass/bootstrap/_navbar.scss */
     .container > .navbar-header,
@@ -3842,22 +3842,22 @@ input[type="button"].btn-block {
 /* line 150, ../sass/bootstrap/_navbar.scss */
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px; }
+  padding: 19px 10px;
+  font-size: 16px;
+  line-height: 12px; }
   /* line 156, ../sass/bootstrap/_navbar.scss */
   .navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none; }
   @media (min-width: 768px) {
     /* line 161, ../sass/bootstrap/_navbar.scss */
     .navbar > .container .navbar-brand {
-      margin-left: -15px; } }
+      margin-left: -10px; } }
 
 /* line 173, ../sass/bootstrap/_navbar.scss */
 .navbar-toggle {
   position: relative;
   float: right;
-  margin-right: 15px;
+  margin-right: 10px;
   padding: 9px 10px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -3880,12 +3880,12 @@ input[type="button"].btn-block {
 
 /* line 205, ../sass/bootstrap/_navbar.scss */
 .navbar-nav {
-  margin: 7.5px -15px; }
+  margin: 9.5px -10px; }
   /* line 208, ../sass/bootstrap/_navbar.scss */
   .navbar-nav > li > a {
     padding-top: 10px;
     padding-bottom: 10px;
-    line-height: 20px; }
+    line-height: 12px; }
   @media (max-width: 767px) {
     /* line 216, ../sass/bootstrap/_navbar.scss */
     .navbar-nav .open .dropdown-menu {
@@ -3902,7 +3902,7 @@ input[type="button"].btn-block {
         padding: 5px 15px 5px 25px; }
       /* line 228, ../sass/bootstrap/_navbar.scss */
       .navbar-nav .open .dropdown-menu > li > a {
-        line-height: 20px; }
+        line-height: 12px; }
         /* line 231, ../sass/bootstrap/_navbar.scss */
         .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus {
           background-image: none; } }
@@ -3913,11 +3913,7 @@ input[type="button"].btn-block {
       margin: 0; }
       /* line 243, ../sass/bootstrap/_navbar.scss */
       .navbar-nav > li {
-        float: left; }
-        /* line 245, ../sass/bootstrap/_navbar.scss */
-        .navbar-nav > li > a {
-          padding-top: 15px;
-          padding-bottom: 15px; } }
+        float: left; } }
 
 @media (min-width: 768px) {
   /* line 262, ../sass/bootstrap/_navbar.scss */
@@ -3929,15 +3925,15 @@ input[type="button"].btn-block {
     float: right !important; } }
 /* line 276, ../sass/bootstrap/_navbar.scss */
 .navbar-form {
-  margin-left: -15px;
-  margin-right: -15px;
-  padding: 10px 15px;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 10px 10px;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-top: 8px;
-  margin-bottom: 8px; }
+  margin-top: 12px;
+  margin-bottom: 12px; }
   @media (max-width: 767px) {
     /* line 288, ../sass/bootstrap/_navbar.scss */
     .navbar-form .form-group {
@@ -3973,19 +3969,19 @@ input[type="button"].btn-block {
 
 /* line 334, ../sass/bootstrap/_navbar.scss */
 .navbar-btn {
-  margin-top: 8px;
-  margin-bottom: 8px; }
+  margin-top: 12px;
+  margin-bottom: 12px; }
 
 /* line 343, ../sass/bootstrap/_navbar.scss */
 .navbar-text {
   float: left;
-  margin-top: 15px;
-  margin-bottom: 15px; }
+  margin-top: 19px;
+  margin-bottom: 19px; }
   @media (min-width: 768px) {
     /* line 343, ../sass/bootstrap/_navbar.scss */
     .navbar-text {
-      margin-left: 15px;
-      margin-right: 15px; } }
+      margin-left: 10px;
+      margin-right: 10px; } }
 
 /* line 357, ../sass/bootstrap/_navbar.scss */
 .navbar-default {
@@ -4156,7 +4152,7 @@ input[type="button"].btn-block {
 /* line 6, ../sass/bootstrap/_breadcrumbs.scss */
 .breadcrumb {
   padding: 8px 15px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   list-style: none;
   background-color: whitesmoke;
   border-radius: 4px; }
@@ -4176,7 +4172,7 @@ input[type="button"].btn-block {
 .pagination {
   display: inline-block;
   padding-left: 0;
-  margin: 20px 0;
+  margin: 12px 0;
   border-radius: 4px; }
   /* line 10, ../sass/bootstrap/_pagination.scss */
   .pagination > li {
@@ -4187,7 +4183,7 @@ input[type="button"].btn-block {
       position: relative;
       float: left;
       padding: 6px 12px;
-      line-height: 1.42857;
+      line-height: 1.2;
       text-decoration: none;
       background-color: white;
       border: 1px solid #dddddd;
@@ -4232,7 +4228,7 @@ input[type="button"].btn-block {
 .pagination-lg > li > a,
 .pagination-lg > li > span {
   padding: 10px 16px;
-  font-size: 18px; }
+  font-size: 16px; }
 /* line 465, ../sass/bootstrap/_mixins.scss */
 .pagination-lg > li:first-child > a,
 .pagination-lg > li:first-child > span {
@@ -4263,7 +4259,7 @@ input[type="button"].btn-block {
 /* line 6, ../sass/bootstrap/_pager.scss */
 .pager {
   padding-left: 0;
-  margin: 20px 0;
+  margin: 12px 0;
   list-style: none;
   text-align: center; }
   /* line 21, ../sass/bootstrap/_mixins.scss */
@@ -4414,9 +4410,9 @@ a.list-group-item.active > .badge,
 .jumbotron {
   padding: 30px;
   margin-bottom: 30px;
-  font-size: 21px;
+  font-size: 15px;
   font-weight: 200;
-  line-height: 2.14286;
+  line-height: 1.8;
   color: inherit;
   background-color: #eeeeee; }
   /* line 15, ../sass/bootstrap/_jumbotron.scss */
@@ -4440,7 +4436,7 @@ a.list-group-item.active > .badge,
         padding-right: 60px; }
       /* line 36, ../sass/bootstrap/_jumbotron.scss */
       .jumbotron h1 {
-        font-size: 63px; } }
+        font-size: 45px; } }
 
 /* line 7, ../sass/bootstrap/_thumbnails.scss */
 .thumbnail {
@@ -4469,7 +4465,7 @@ a.thumbnail:focus {
 /* line 9, ../sass/bootstrap/_alerts.scss */
 .alert {
   padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   border: 1px solid transparent;
   border-radius: 4px; }
   /* line 16, ../sass/bootstrap/_alerts.scss */
@@ -4584,8 +4580,8 @@ a.thumbnail:focus {
 /* line 39, ../sass/bootstrap/_progress-bars.scss */
 .progress {
   overflow: hidden;
-  height: 20px;
-  margin-bottom: 20px;
+  height: 12px;
+  margin-bottom: 12px;
   background-color: whitesmoke;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -4760,7 +4756,7 @@ a.list-group-item {
 
 /* line 7, ../sass/bootstrap/_panels.scss */
 .panel {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   background-color: white;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -4816,7 +4812,7 @@ a.list-group-item {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 16px; }
+  font-size: 12px; }
   /* line 80, ../sass/bootstrap/_panels.scss */
   .panel-title > a {
     color: inherit; }
@@ -4968,7 +4964,7 @@ a.list-group-item {
 /* line 6, ../sass/bootstrap/_close.scss */
 .close {
   float: right;
-  font-size: 21px;
+  font-size: 15px;
   font-weight: bold;
   line-height: 1;
   color: black;
@@ -5071,7 +5067,7 @@ body.modal-open {
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
-  min-height: 16.42857px; }
+  min-height: 16.2px; }
 
 /* line 91, ../sass/bootstrap/_modals.scss */
 .modal-header .close {
@@ -5080,7 +5076,7 @@ body.modal-open {
 /* line 96, ../sass/bootstrap/_modals.scss */
 .modal-title {
   margin: 0;
-  line-height: 1.42857; }
+  line-height: 1.2; }
 
 /* line 103, ../sass/bootstrap/_modals.scss */
 .modal-body {
@@ -5263,7 +5259,7 @@ body.modal-open {
 .popover-title {
   margin: 0;
   padding: 8px 14px;
-  font-size: 14px;
+  font-size: 10px;
   font-weight: normal;
   line-height: 18px;
   background-color: #f7f7f7;
@@ -6143,3 +6139,139 @@ td.visible-print {
   th.hidden-print,
   td.hidden-print {
     display: none !important; } }
+/* line 1, ../sass/_partials/_scaffolding.scss */
+html {
+  font-size: 62.5%; }
+
+/* line 5, ../sass/_partials/_scaffolding.scss */
+body {
+  font-size: 12px; }
+
+/* line 9, ../sass/_partials/_scaffolding.scss */
+p {
+  color: #538bc0;
+  margin-bottom: 25px; }
+  /* line 13, ../sass/_partials/_scaffolding.scss */
+  p.intro {
+    font-size: 14px;
+    font-weight: bold; }
+
+/* line 20, ../sass/_partials/_scaffolding.scss */
+.container.masthead {
+  padding: 8px 25px;
+  background-color: #538bc0; }
+  /* line 24, ../sass/_partials/_scaffolding.scss */
+  .container.masthead a.brand {
+    background: url("../images/logo.png") no-repeat;
+    width: 121px;
+    height: 44px;
+    display: block;
+    float: left;
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0; }
+  /* line 33, ../sass/_partials/_scaffolding.scss */
+  .container.masthead p {
+    float: right;
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 18px;
+    font-weight: normal; }
+
+@media (max-width: 479px) {
+  /* line 49, ../sass/_partials/_scaffolding.scss */
+  .container.masthead {
+    text-align: center; }
+    /* line 52, ../sass/_partials/_scaffolding.scss */
+    .container.masthead a.brand, .container.masthead p {
+      float: none; }
+    /* line 56, ../sass/_partials/_scaffolding.scss */
+    .container.masthead a.brand {
+      width: 121px;
+      margin: 10px auto; } }
+/* line 1, ../sass/_partials/_type.scss */
+h1, .h1, h2, .h2 {
+  text-transform: uppercase;
+  border-bottom: 1px solid #538bc0;
+  padding-bottom: 10px;
+  color: #538bc0; }
+
+/* line 8, ../sass/_partials/_type.scss */
+h1 {
+  font-size: 28px;
+  margin-top: 0px;
+  font-weight: normal; }
+  /* line 13, ../sass/_partials/_type.scss */
+  h1 strong {
+    display: block;
+    font-weight: bold; }
+
+/* line 20, ../sass/_partials/_type.scss */
+h2, .h2 {
+  font-size: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #538bc0;
+  margin-bottom: 10px; }
+
+/* line 1, ../sass/_partials/_navbar.scss */
+.navbar {
+  border-radius: 0px;
+  border: none;
+  min-height: 0px;
+  margin-bottom: 15px; }
+  /* line 7, ../sass/_partials/_navbar.scss */
+  .navbar.navbar-primary {
+    background-color: #d3ceae; }
+  /* line 11, ../sass/_partials/_navbar.scss */
+  .navbar .navbar-collapse {
+    padding: 0; }
+  /* line 17, ../sass/_partials/_navbar.scss */
+  .navbar .navbar-header .navbar-toggle .icon-bar {
+    background-color: #7d7a66;
+    height: 6px;
+    width: 40px;
+    border-radius: 5px; }
+  /* line 27, ../sass/_partials/_navbar.scss */
+  .navbar.navbar-footer {
+    border-bottom: 1px solid #538bc0;
+    border-top: 1px solid #538bc0; }
+    /* line 31, ../sass/_partials/_navbar.scss */
+    .navbar.navbar-footer .navbar-nav {
+      float: right;
+      margin: 0; }
+      /* line 35, ../sass/_partials/_navbar.scss */
+      .navbar.navbar-footer .navbar-nav > li {
+        float: left; }
+        /* line 38, ../sass/_partials/_navbar.scss */
+        .navbar.navbar-footer .navbar-nav > li > a {
+          color: #7d7a66;
+          font-size: 12px;
+          padding: 10px; }
+  /* line 47, ../sass/_partials/_navbar.scss */
+  .navbar .navbar-nav {
+    width: auto;
+    float: none; }
+    /* line 52, ../sass/_partials/_navbar.scss */
+    .navbar .navbar-nav > li > a {
+      color: #7d7a66;
+      text-transform: uppercase;
+      padding: 10px 25px;
+      font-size: 14px; }
+      /* line 58, ../sass/_partials/_navbar.scss */
+      .navbar .navbar-nav > li > a:hover {
+        background-color: #e0ddc6;
+        color: #292820; }
+
+/* line 2, ../sass/_partials/_article.scss */
+.row .article {
+  color: #538bc0; }
+  /* line 5, ../sass/_partials/_article.scss */
+  .row .article ul {
+    margin: 20px 0;
+    padding: 0;
+    list-style-position: inside; }
