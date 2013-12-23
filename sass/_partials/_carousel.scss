@@ -1,0 +1,30 @@
+.carousel{
+	padding:0;
+
+	.item{
+		list-style:none;
+	}
+}
+
+@media (min-width:768px) and (max-width:991px){
+	.carousel{
+		.item{
+			img{
+				max-width:350px;
+				width:100%;
+			}
+		}
+	}
+}
+
+@media (min-width:992px){
+	.carousel{
+		.item{
+			img{
+				max-width:300px;
+				width:100%;
+			}
+		}
+
+	}
+}
