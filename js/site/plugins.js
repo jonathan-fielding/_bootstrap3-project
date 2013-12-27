@@ -55,9 +55,45 @@
             // and this.options
             // you can add more functions like the one below and
             // call them like so: this.yourOtherFunction(this.element, this.options).
-            console.log(this.element);
-
+            this.onEnterMobile();
+            ssm.addStates([
+                {
+                    id: 'mobile',
+                    maxWidth: 767,
+                    onEnter: function(){
+                        onEnterMobile();
+                    }
+                },            
+                {
+                    id: 'tablet',
+                    maxWidth: 991,
+                    minWidth: 768,
+                    onEnter: function(){
+                        onEnterTablet();
+                    }
+                },
+                {
+                    id: 'desktop',
+                    minWidth: 992,
+                    onEnter: function(){
+                        onEnterDesktop();
+                    }
+                }
+            ]);
+            ssm.ready();
         },
+
+        onEnterMobile: function (){
+            console.log("You've entered mobile screen dimension territory");
+        },
+
+        onEnterTablet: function (){
+            console.log("You've entered tablet screen dimension territory");        
+        },
+
+        onEnterDesktop: function (){
+             console.log("You've entered desktop screen dimension territory");       
+        }
 
     };
 
