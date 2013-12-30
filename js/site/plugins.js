@@ -1,27 +1,4 @@
-/*!
- * jQuery lightweight plugin boilerplate
- * Original author: @ajpiano
- * Further changes, comments: @addyosmani
- * Licensed under the MIT license
- */
-
-// the semi-colon before the function invocation is a safety
-// net against concatenated scripts and/or other plugins
-// that are not closed properly.
 ;(function ( $, window, document, undefined ) {
-
-    // undefined is used here as the undefined global
-    // variable in ECMAScript 3 and is mutable (i.e. it can
-    // be changed by someone else). undefined isn't really
-    // being passed in so we can ensure that its value is
-    // truly undefined. In ES5, undefined can no longer be
-    // modified.
-
-    // window and document are passed through as local
-    // variables rather than as globals, because this (slightly)
-    // quickens the resolution process and can be more
-    // efficiently minified (especially when both are
-    // regularly referenced in your plugin).
 
     // Create the defaults once
     var pluginName = "dcResponsiveCarousel",
@@ -32,69 +9,88 @@
     // The actual plugin constructor
     function Plugin( element, options ) {
         this.element = element;
-
-        // jQuery has an extend method that merges the
-        // contents of two or more objects, storing the
-        // result in the first object. The first object
-        // is generally empty because we don't want to alter
-        // the default options for future instances of the plugin
+        $element = $(element);
         this.options = $.extend( {}, defaults, options) ;
-
         this._defaults = defaults;
         this._name = pluginName;
-
         this.init();
     }
 
     Plugin.prototype = {
 
         init: function() {
-            // Place initialization logic here
-            // You already have access to the DOM element and
-            // the options via the instance, e.g. this.element
-            // and this.options
-            // you can add more functions like the one below and
-            // call them like so: this.yourOtherFunction(this.element, this.options).
-            this.onEnterMobile();
             ssm.addStates([
                 {
                     id: 'mobile',
                     maxWidth: 767,
-                    onEnter: function(){
-                        onEnterMobile();
-                    }
+                    onEnter: this.onEnterMobile
                 },            
                 {
                     id: 'tablet',
                     maxWidth: 991,
                     minWidth: 768,
-                    onEnter: function(){
-                        onEnterTablet();
-                    }
+                    onEnter: this.onEnterTablet
                 },
                 {
                     id: 'desktop',
                     minWidth: 992,
-                    onEnter: function(){
-                        onEnterDesktop();
-                    }
+                    onEnter: this.onEnterDesktop
                 }
             ]);
             ssm.ready();
         },
 
         onEnterMobile: function (){
-            console.log("You've entered mobile screen dimension territory");
+            var itemsPerPage = 1;
+            console.log("Mobile");
+            Plugin.prototype.createCarousel($element, itemsPerPage);
+
         },
 
         onEnterTablet: function (){
-            console.log("You've entered tablet screen dimension territory");        
+            var itemsPerPage = 2;
+            console.log("Tablet");
+            Plugin.prototype.createCarousel($element, itemsPerPage);         
         },
 
         onEnterDesktop: function (){
-             console.log("You've entered desktop screen dimension territory");       
-        }
+             var itemsPerPage = 3;
+             console.log("Desktop");
+             Plugin.prototype.createCarousel($element, itemsPerPage);
 
+        },
+
+        createCarousel: function (element, itemsPerPage){
+            
+            //Cache all list items within, and the length of the carousel
+            var $carousel = $(".carousel"),
+                $carouselItems = $carousel.children(".item"),
+                carouselItemsLength = $carouselItems.length,
+                carouselItemsTotalWidth = 0,
+                totalWidth = 0,
+                carouselWidth = $carousel.parent().outerWidth(),
+                carouselItemWidth = carouselWidth / itemsPerPage,
+                itemsPerPage = itemsPerPage;
+
+                //Loop through each item within the carousel, get its width and add it to a total width of the carousel
+                //for (var i = 0; i < carouselItemsLength; i++) {
+                    //carouselItemsTotalWidth = carouselItemsTotalWidth + $carouselItems.eq(i).outerWidth();
+                    //$carouselItems.eq(i).outerWidth(carouselItemWidth);
+                //};
+
+                $('.carousel').children('.item').each(function(index) {
+                    totalWidth += parseInt($(this).outerWidth(), 10);
+                    $(this).css({"width":carouselItemWidth});
+                });
+
+                console.log("totalWidth:"+totalWidth);
+                console.log($('.carousel').css("width"));
+
+                //Set the width of the carousel to the sum of the widths of its content. This will create a strip of list items all side by side.
+                $('.carousel').css({"width":totalWidth});
+                //console.log($('.carousel').css("width"));
+
+        }
     };
 
     // A really lightweight plugin wrapper around the constructor,
