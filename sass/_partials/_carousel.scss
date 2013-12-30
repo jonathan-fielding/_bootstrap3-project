@@ -1,8 +1,41 @@
-.carousel{
-	padding:0;
+.carousel-container{
+	&.enabled{
+		overflow:hidden;
+		position:relative;		
+	}
 
-	.item{
-		list-style:none;
+	.carousel{
+		padding:0;
+		position:absolute;
+		left:0px;
+
+		.item{
+			list-style:none;
+			position:relative;
+
+			a{
+				display:block;
+
+				img{
+					max-width:100%;
+				}
+			}
+		}
+	}
+}	
+
+
+@media (max-width:767px){
+	.carousel-container{
+		padding:0;
+
+		.carousel{
+			margin:0px;
+
+			.item{
+				padding:0;
+			}
+		}		
 	}
 }
 
