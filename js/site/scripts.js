@@ -8,7 +8,7 @@ client.website = function(){
 
 	return{
 		init: function(){
-			initPlugins();
+			initPlugins();		
 		}
 	};
 

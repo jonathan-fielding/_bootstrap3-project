@@ -73,9 +73,14 @@
                     $carouselContainer.addClass("enabled");
 
                     for (var i = 0; i < carouselItemsLength; i++) {
+                        
+                        $carousel.children(".item").eq(i).height("auto");
+
                         if(deviceType==="mobile"){
                             //Don't set a width on carousel items when viewed on a mobile device. The main reason for this is the $carouselContainer does not have a max-width property set on device screens below 768px
-                            $carousel.children(".item").eq(i).outerWidth("767px");
+                            $carousel.children(".item").eq(i).css({
+                                "width": "100%",
+                            });
                         }else{
                             //Add a width to each item within the carousel: total width of carousel / the number of items = item width
                             $carousel.children(".item").eq(i).outerWidth(carouselItemWidth);
@@ -92,14 +97,18 @@
                         carouselItemsTotalWidth = carouselItemsTotalWidth + $carousel.children(".item").eq(i).outerWidth();
                     };
 
-                    console.log(tallestItemHeight);
-
+                    //Set all elements within the carousel to the height of the tallest item
                     $carouselItems.height(tallestItemHeight);
 
+                    //Set the height of the carousel container to the height of its tallest item.
                     $carouselContainer.height(tallestItemHeight);
 
-                    //Set the width of the carousel to the sum of the widths of its content. This will create a strip of list items all side by side.
-                    $carousel.css({"width":carouselItemsTotalWidth});
+                    if(deviceType!=="mobile"){
+                        //Set the width of the carousel to the sum of the widths of its content. This will create a strip of list items all side by side.
+                        $carousel.css({"width":carouselItemsTotalWidth});
+                    }else{
+                        $carousel.css({"width":"auto"});
+                    }    
 
                 }();
 
