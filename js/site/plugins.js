@@ -81,12 +81,18 @@
                             $carousel.children(".item").eq(i).outerWidth(carouselItemWidth);
                         }
                         
+
+                        //Reset height of list item to auto if previously set to static height
+                        $carousel.children(".item").eq(i).height("auto");
+                        
                         //Find the tallest item by comparing the current item's height with the previous tallest.
                         tallestItemHeight = $carousel.children(".item").eq(i).height() > tallestItemHeight?$carousel.children(".item").eq(i).height():tallestItemHeight;
                         
                         //Get each element's width and add it to a total width of the carousel.
                         carouselItemsTotalWidth = carouselItemsTotalWidth + $carousel.children(".item").eq(i).outerWidth();
                     };
+
+                    console.log(tallestItemHeight);
 
                     $carouselItems.height(tallestItemHeight);
 
