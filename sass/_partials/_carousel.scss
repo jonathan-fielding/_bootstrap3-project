@@ -6,12 +6,9 @@
 
 	.carousel{
 		padding:0;
-		position:absolute;
-		left:0px;
 
 		.item{
 			list-style:none;
-			position:relative;
 
 			a{
 				display:block;
@@ -31,17 +28,38 @@
 
 		.carousel{
 			margin:0px;
+			position:relative;
 
 			.item{
 				padding:0;
+				position:absolute;
+				top:0px;
+				left:0px;
+				width:100%;
 			}
 		}		
+	}
+}
+
+@media (min-width:768px){
+	.carousel-container{
+		&.enabled{
+			.carousel{
+				position:absolute;
+				left:10px;
+			}
+		}
 	}
 }
 
 @media (min-width:768px) and (max-width:991px){
 	.carousel{
 		.item{
+			
+			&.col-sm-6{
+				width:370px;
+			}
+
 			img{
 				max-width:350px;
 				width:100%;
@@ -53,6 +71,11 @@
 @media (min-width:992px){
 	.carousel{
 		.item{
+			
+			&.col-sm-6{
+				width:320px;
+			}
+
 			img{
 				max-width:300px;
 				width:100%;
