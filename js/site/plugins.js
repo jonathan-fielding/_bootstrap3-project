@@ -5,7 +5,8 @@
         defaults = {
             itemsPerPageOnMobile: 1,
             itemsPerPageOnTablet: 2,
-            itemsPerPageOnDesktop: 3
+            itemsPerPageOnDesktop: 3,
+            carouselItemClass: ".item"
         };
 
     // The actual plugin constructor
@@ -21,42 +22,40 @@
     Plugin.prototype = {
 
         init: function() {
+            var that = this;
             enquire
-            .register("screen and (max-width:767px)", this.onEnterMobile)
-            .register("screen and (min-width:768px) and (max-width:991px)", this.onEnterTablet)
-            .register("screen and (min-width:992px)", this.onEnterDesktop)          
+            .register("screen and (max-width:767px)", $.proxy(this.onEnterMobile,this))
+            .register("screen and (min-width:768px) and (max-width:991px)", $.proxy(this.onEnterTablet,this))
+            .register("screen and (min-width:992px)", $.proxy(this.onEnterDesktop,this))
         },
 
     
 
         onEnterMobile: function (){
-            var itemsPerPage = Plugin.prototype,
+            var itemsPerPage = this.settings.itemsPerPageOnMobile,
                 deviceType = "mobile";
-            console.log(deviceType);
-            Plugin.prototype.createCarousel($element, itemsPerPage, deviceType);
+                this.createCarousel(itemsPerPage, deviceType);
+
 
         },
 
         onEnterTablet: function (){
-            var itemsPerPage = 2;
+            var itemsPerPage = this.settings.itemsPerPageOnTablet,
                 deviceType = "tablet";
-            console.log(deviceType);
-            Plugin.prototype.createCarousel($element, itemsPerPage, deviceType);         
+                this.createCarousel(itemsPerPage, deviceType);         
         },
 
         onEnterDesktop: function (){
-             var itemsPerPage = 3;
-                deviceType = "desktop";
-            console.log(deviceType);
-             Plugin.prototype.createCarousel($element, itemsPerPage, deviceType);
-
+             var itemsPerPage = this.settings.itemsPerPageOnDesktop,
+                 deviceType = "desktop";
+                 this.createCarousel(itemsPerPage, deviceType);
         },
 
-        createCarousel: function (element, itemsPerPage, deviceType){
+        createCarousel: function (itemsPerPage, deviceType){
             
             //Cache all list items within, and the length of the carousel
-            var $carousel = $(element),
-                $carouselItems = $carousel.children(".item"),
+            var $carousel = $(this.element),
+                $carouselItems = $carousel.children(this.settings.carouselItemClass),
                 carouselItemsLength = $carouselItems.length,
                 carouselItemsTotalWidth = 0,
                 totalWidth = 0,
@@ -66,6 +65,7 @@
                 carouselItemWidth = carouselWidth / itemsPerPage,
                 itemsPerPage = itemsPerPage,
                 deviceType = deviceType;
+
 
                 var setupCarousel = function(){
 
@@ -111,6 +111,7 @@
 
         }
     };
+
 
     // A really lightweight plugin wrapper around the constructor,
     // preventing against multiple instantiations
