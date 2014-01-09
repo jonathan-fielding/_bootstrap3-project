@@ -20,11 +20,26 @@
     Plugin.prototype = {
 
         init: function() {
-            var that = this;
+            this.initCarousel();
             enquire
             .register("screen and (max-width:767px)", $.proxy(this.onEnterMobile,this))
             .register("screen and (min-width:768px) and (max-width:991px)", $.proxy(this.onEnterTablet,this))
             .register("screen and (min-width:992px)", $.proxy(this.onEnterDesktop,this))
+        },
+
+        initCarousel: function(){
+            var controls = this.settings.controls,
+                $carousel = $(this.element);
+
+            setupNavigation = function(){
+                if(controls){
+                    var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
+                    $controls.html("<li class='previous'><a href='#' class='hide-text'>Previous</a></li><li class='next'><a href='#' class='hide-text'>Next</a></li>");
+                    $controls.insertAfter($carousel);
+                }
+            }()
+
+
         },
 
         onEnterMobile: function (){
@@ -55,7 +70,6 @@
                 carouselItemsTotalWidth = 0,
                 tallestItemHeight = 0,
                 $carouselContainer = $carousel.parent(),
-                controls = this.settings.controls,
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
                 //                                                                                                       //                
@@ -112,26 +126,9 @@
                         
                         $carousel.css({"width":"auto"});
                     }    
-                }(),
-
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                setupNavigation = function(){
-                    if(controls){
-                        var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
-                        console.log($controls);
-                        $controls.html("<li class='previous'><a href='#' class='hide-text'>Previous</a></li><li class='next'><a href='#' class='hide-text'>Next</a></li>");
-                        $controls.insertAfter($carousel);
-                    }
                 }()
 
-
-
-
-
-
-
-
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         }
     };
