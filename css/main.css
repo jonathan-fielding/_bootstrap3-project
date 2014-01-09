@@ -5971,26 +5971,37 @@ td.visible-print {
   position: relative; }
 /* line 7, ../sass/_partials/_carousel.scss */
 .carousel-container .carousel {
-  padding: 0; }
-  /* line 10, ../sass/_partials/_carousel.scss */
+  padding: 0;
+  margin-bottom: 0; }
+  /* line 11, ../sass/_partials/_carousel.scss */
   .carousel-container .carousel .item {
     list-style: none; }
-    /* line 13, ../sass/_partials/_carousel.scss */
+    /* line 14, ../sass/_partials/_carousel.scss */
     .carousel-container .carousel .item a {
       display: block; }
-      /* line 16, ../sass/_partials/_carousel.scss */
+      /* line 17, ../sass/_partials/_carousel.scss */
       .carousel-container .carousel .item a img {
         max-width: 100%; }
+/* line 24, ../sass/_partials/_carousel.scss */
+.carousel-container .carousel-controls {
+  margin: 0;
+  padding: 0; }
+  /* line 28, ../sass/_partials/_carousel.scss */
+  .carousel-container .carousel-controls .previous {
+    float: left; }
+  /* line 32, ../sass/_partials/_carousel.scss */
+  .carousel-container .carousel-controls .next {
+    float: right; }
 
 @media (max-width: 767px) {
-  /* line 26, ../sass/_partials/_carousel.scss */
+  /* line 40, ../sass/_partials/_carousel.scss */
   .carousel-container {
     padding: 0; }
-    /* line 29, ../sass/_partials/_carousel.scss */
+    /* line 43, ../sass/_partials/_carousel.scss */
     .carousel-container .carousel {
       margin: 0px;
       position: relative; }
-      /* line 33, ../sass/_partials/_carousel.scss */
+      /* line 47, ../sass/_partials/_carousel.scss */
       .carousel-container .carousel .item {
         padding: 0;
         position: absolute;
@@ -5998,23 +6009,23 @@ td.visible-print {
         left: 0px;
         width: 100%; } }
 @media (min-width: 768px) {
-  /* line 47, ../sass/_partials/_carousel.scss */
+  /* line 61, ../sass/_partials/_carousel.scss */
   .carousel-container.enabled .carousel {
     position: absolute;
     left: 10px; } }
 @media (min-width: 768px) and (max-width: 991px) {
-  /* line 59, ../sass/_partials/_carousel.scss */
+  /* line 73, ../sass/_partials/_carousel.scss */
   .carousel .item.col-sm-6 {
     width: 370px; }
-  /* line 63, ../sass/_partials/_carousel.scss */
+  /* line 77, ../sass/_partials/_carousel.scss */
   .carousel .item img {
     max-width: 350px;
     width: 100%; } }
 @media (min-width: 992px) {
-  /* line 75, ../sass/_partials/_carousel.scss */
+  /* line 89, ../sass/_partials/_carousel.scss */
   .carousel .item.col-sm-6 {
     width: 320px; }
-  /* line 79, ../sass/_partials/_carousel.scss */
+  /* line 93, ../sass/_partials/_carousel.scss */
   .carousel .item img {
     max-width: 300px;
     width: 100%; } }

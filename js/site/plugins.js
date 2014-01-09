@@ -1,15 +1,13 @@
 ;(function ( $, window, document, undefined ) {
-
-    // Create the defaults once
     var pluginName = "dcResponsiveCarousel",
         defaults = {
             itemsPerPageOnMobile: 1,
             itemsPerPageOnTablet: 2,
             itemsPerPageOnDesktop: 3,
             carouselItemClass: ".item",
+            controls: true,
         };
 
-    // The actual plugin constructor
     function Plugin( element, options ) {
         this.element = element;
         $element = $(element);
@@ -28,7 +26,6 @@
             .register("screen and (min-width:768px) and (max-width:991px)", $.proxy(this.onEnterTablet,this))
             .register("screen and (min-width:992px)", $.proxy(this.onEnterDesktop,this))
         },
-
 
         onEnterMobile: function (){
             var itemsPerPage = this.settings.itemsPerPageOnMobile,
@@ -58,6 +55,26 @@
                 carouselItemsTotalWidth = 0,
                 tallestItemHeight = 0,
                 $carouselContainer = $carousel.parent(),
+                controls = this.settings.controls,
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //                                                                                                       //                
+                //    setupCarousel:                                                                                     //
+                //                                                                                                       //
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+                //                                                                                                       //                
+                //    The carousel consists of a <UL> of <LI> items which are floated together in a strip. Only a small  //
+                //    section of this strip is shown at any one time as the carousel's container has overflow:hidden.    //
+                //                                                                                                       //
+                //    setupCarousel:                                                                                     //
+                //                                                                                                       //
+                //    -   creates the strip of list items by adding all the <LI> widths together to establish            //
+                //        a total width and adding this to the <UL> to make it wide enough for all <LI>s to be stacked   //
+                //        side by side.                                                                                  //
+                //                                                                                                       //
+                //    -   Calculates the carousel slide with the greatest height and sets all slides to this height.     //
+                //                                                                                                       //
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 setupCarousel = function(){
 
@@ -87,13 +104,34 @@
                     }
 
                     else{
-                        //On mobile view only 1 carousel item is shown at a time. If the carousel's width exceeds the width of a single image (as it does on devices above 768px) then
-                        //the max-width property of the image is rendered useless in this view and the images will no longer be responsive.
-
-                        //So reset the width of the carousel to auto so the carousel can only ever be the width of a single image. 
+                        
+                        // On mobile view only 1 carousel item is shown at a time. If the carousel's width exceeds the width of a single image
+                        // (as it does on devices above 768px) then the max-width property of the image is rendered useless in this view
+                        // and the images will no longer be responsive.
+                        // So reset the width of the carousel to auto so the carousel can only ever be the width of a single image. 
+                        
                         $carousel.css({"width":"auto"});
                     }    
-                }();
+                }(),
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                setupNavigation = function(){
+                    if(controls){
+                        var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
+                        console.log($controls);
+                        $controls.html("<li class='previous'><a href='#' class='hide-text'>Previous</a></li><li class='next'><a href='#' class='hide-text'>Next</a></li>");
+                        $controls.insertAfter($carousel);
+                    }
+                }()
+
+
+
+
+
+
+
+
 
         }
     };
