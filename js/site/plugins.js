@@ -20,116 +20,92 @@
     Plugin.prototype = {
 
         init: function() {
-            this.initCarousel();
+            this.setupCarousel();
             enquire
             .register("screen and (max-width:767px)", $.proxy(this.onEnterMobile,this))
             .register("screen and (min-width:768px) and (max-width:991px)", $.proxy(this.onEnterTablet,this))
             .register("screen and (min-width:992px)", $.proxy(this.onEnterDesktop,this))
         },
 
-        initCarousel: function(){
-            var controls = this.settings.controls,
-                $carousel = $(this.element);
+        setupCarousel: function(){
+            console.log("Setting up variables");
 
-            setupNavigation = function(){
-                if(controls){
-                    var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
-                    $controls.html("<li class='previous'><a href='#' class='hide-text'>Previous</a></li><li class='next'><a href='#' class='hide-text'>Next</a></li>");
-                    $controls.insertAfter($carousel);
-                }
-            }()
+            var controls = this.settings.controls
+                this.carouselItemClass = this.settings.carouselItemClass
+                this.$carousel = $(this.element),
+                this.$carouselContainer = this.$carousel.parent(),
 
+
+            //Add enabled class to Carousel's containing element which will apply further styles for users with JS
+            this.$carouselContainer.addClass("enabled");
+
+
+            if(controls){
+                var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
+                $controls.html("<li class='previous'><a href='#' class='hide-text'>Previous</a></li><li class='next'><a href='#' class='hide-text'>Next</a></li>");
+                $controls.insertAfter(this.$carousel);
+            }
 
         },
 
         onEnterMobile: function (){
             var itemsPerPage = this.settings.itemsPerPageOnMobile,
                 deviceType = "mobile";
-                this.createCarousel(itemsPerPage, deviceType);
+                this.resizeCarousel(itemsPerPage, deviceType);
         },
 
         onEnterTablet: function (){
             var itemsPerPage = this.settings.itemsPerPageOnTablet,
                 deviceType = "tablet";
-                this.createCarousel(itemsPerPage, deviceType);         
+                this.resizeCarousel(itemsPerPage, deviceType);         
         },
 
         onEnterDesktop: function (){
              var itemsPerPage = this.settings.itemsPerPageOnDesktop,
                  deviceType = "desktop";
-                 this.createCarousel(itemsPerPage, deviceType);
+                 this.resizeCarousel(itemsPerPage, deviceType);
         },
 
-        createCarousel: function (itemsPerPage, deviceType){
-            
-            //Cache all list items within, and the length of the carousel
-            var $carousel = $(this.element),
-                $carouselItem = $(this.settings.carouselItemClass);
-                $carouselItems = $carousel.children(),
-                carouselItemsLength = $carouselItems.length,
-                carouselItemsTotalWidth = 0,
+        resizeCarousel: function (itemsPerPage, deviceType){
+            console.log("resized");
+
+            var carouselItemsTotalWidth = 0,
                 tallestItemHeight = 0,
-                $carouselContainer = $carousel.parent(),
+                $carouselItems = this.$carousel.children(this.carouselItemClass),
+                carouselItemsLength = $carouselItems.length
 
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //                                                                                                       //                
-                //    setupCarousel:                                                                                     //
-                //                                                                                                       //
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //                                                                                                       //                
-                //    The carousel consists of a <UL> of <LI> items which are floated together in a strip. Only a small  //
-                //    section of this strip is shown at any one time as the carousel's container has overflow:hidden.    //
-                //                                                                                                       //
-                //    setupCarousel:                                                                                     //
-                //                                                                                                       //
-                //    -   creates the strip of list items by adding all the <LI> widths together to establish            //
-                //        a total width and adding this to the <UL> to make it wide enough for all <LI>s to be stacked   //
-                //        side by side.                                                                                  //
-                //                                                                                                       //
-                //    -   Calculates the carousel slide with the greatest height and sets all slides to this height.     //
-                //                                                                                                       //
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                setupCarousel = function(){
+            for (var i = 0; i < carouselItemsLength; i++) {                        
+                //Reset height of list item to auto if previously set to static height
+                $carouselItems.eq(i).height("auto");
+                
+                //Find the tallest item by comparing the current item's height with the previous tallest.
+                tallestItemHeight = $carouselItems.eq(i).height() > tallestItemHeight?$carouselItems.eq(i).height():tallestItemHeight;
+                
+                //Get each element's width and add it to a total width of the carousel.
+                carouselItemsTotalWidth = carouselItemsTotalWidth + $carouselItems.eq(i).outerWidth();
+            };
 
-                    //Add enabled class to Carousel's containing element which will apply further styles for users with JS
-                    $carouselContainer.addClass("enabled");
+            //Set all elements within the carousel to the height of the tallest item
+            $carouselItems.height(tallestItemHeight);
 
-                    for (var i = 0; i < carouselItemsLength; i++) {                        
-                        //Reset height of list item to auto if previously set to static height
-                        $carousel.children($carouselItem).eq(i).height("auto");
-                        
-                        //Find the tallest item by comparing the current item's height with the previous tallest.
-                        tallestItemHeight = $carousel.children($carouselItem).eq(i).height() > tallestItemHeight?$carousel.children($carouselItem).eq(i).height():tallestItemHeight;
-                        
-                        //Get each element's width and add it to a total width of the carousel.
-                        carouselItemsTotalWidth = carouselItemsTotalWidth + $carousel.children($carouselItem).eq(i).outerWidth();
-                    };
+            //Set the height of the carousel container to the height of its tallest item.
+            this.$carouselContainer.height(tallestItemHeight);
 
-                    //Set all elements within the carousel to the height of the tallest item
-                    $carouselItems.height(tallestItemHeight);
+            if(deviceType!=="mobile"){
+                //Set the width of the carousel to the sum of the widths of its content. This will create a strip of list items all side by side. 
+                this.$carousel.css({"width":carouselItemsTotalWidth});
+            }
 
-                    //Set the height of the carousel container to the height of its tallest item.
-                    $carouselContainer.height(tallestItemHeight);
-
-                    if(deviceType!=="mobile"){
-                        //Set the width of the carousel to the sum of the widths of its content. This will create a strip of list items all side by side. 
-                        $carousel.css({"width":carouselItemsTotalWidth});
-                    }
-
-                    else{
-                        
-                        // On mobile view only 1 carousel item is shown at a time. If the carousel's width exceeds the width of a single image
-                        // (as it does on devices above 768px) then the max-width property of the image is rendered useless in this view
-                        // and the images will no longer be responsive.
-                        // So reset the width of the carousel to auto so the carousel can only ever be the width of a single image. 
-                        
-                        $carousel.css({"width":"auto"});
-                    }    
-                }()
-
-                ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+            else{
+                
+                // On mobile view only 1 carousel item is shown at a time. If the carousel's width exceeds the width of a single image
+                // (as it does on devices above 768px) then the max-width property of the image is rendered useless in this view
+                // and the images will no longer be responsive.
+                // So reset the width of the carousel to auto so the carousel can only ever be the width of a single image. 
+                
+                this.$carousel.css({"width":"auto"});
+            } 
         }
     };
 
