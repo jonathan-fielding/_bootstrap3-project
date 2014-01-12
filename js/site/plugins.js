@@ -112,19 +112,7 @@
                 $element.stop().animate({left: '10'}, 1000);
 
             }
-            
-
-            //console.log(pageWidth);
-            //console.log($('[data-page="'++'"]'));
-            //this.movePreviousPageItems(direction);
-            //$element.css({left:-moveDistance});
         },
-
-        //movePreviousPageItems: function(direction){
-            //var $itemsToMove = null;
-
-            //console.log(this.$carouselItems.last());
-        //},       
 
         resizeCarousel: function (itemsPerPage, deviceType){
             var carouselItemsTotalWidth = 0,
