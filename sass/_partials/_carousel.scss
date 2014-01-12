@@ -24,13 +24,30 @@
 	.carousel-controls{
 		margin:0;
 		padding:0;
+		z-index: 999;
+		position:relative;
+		top:37%;
 
-		.previous{
-			float:left;
-		}
+		li{
+			list-style:none;
 
-		.next{
-			float:right;
+			&.previous{
+				float:left;
+			}
+
+			&.next{
+				float:right;
+			}
+
+			a{
+				width:20px;
+				height:20px;
+				padding:10px;
+				background-color:#FF0;
+				display:block;
+				@include box-sizing(content-box);
+
+			}
 		}
 	}
 }	

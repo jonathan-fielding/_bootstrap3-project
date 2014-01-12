@@ -27,25 +27,32 @@
             .register("screen and (min-width:992px)", $.proxy(this.onEnterDesktop,this))
         },
 
-        setupCarousel: function(){
-            console.log("Setting up variables");
 
+
+        setupCarousel: function(){
             var controls = this.settings.controls
                 this.carouselItemClass = this.settings.carouselItemClass
                 this.$carousel = $(this.element),
                 this.$carouselContainer = this.$carousel.parent(),
+                this.$carouselItems = this.$carousel.children(this.carouselItemClass),
+                this.$pageWidth = this.$carouselContainer.outerWidth(),
 
 
             //Add enabled class to Carousel's containing element which will apply further styles for users with JS
             this.$carouselContainer.addClass("enabled");
 
-
+            
+            //If controls are enabled then create them
             if(controls){
                 var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
-                $controls.html("<li class='previous'><a href='#' class='hide-text'>Previous</a></li><li class='next'><a href='#' class='hide-text'>Next</a></li>");
+                $controls.html("<li class='previous'><a href='#' class='text-hide'>Previous</a></li><li class='next'><a href='#' class='text-hide'>Next</a></li>");
                 $controls.insertAfter(this.$carousel);
+                $controls.on("click", "li a", this.switchPage);
             }
 
+            this.$carouselItems.each(function(){
+                $(this).attr("data-original-order",$(this).index()+1)
+            });
         },
 
         onEnterMobile: function (){
@@ -66,25 +73,77 @@
                  this.resizeCarousel(itemsPerPage, deviceType);
         },
 
-        resizeCarousel: function (itemsPerPage, deviceType){
-            console.log("resized");
+        createPages: function(itemsPerPage){
+            var pageCounter = 1;
 
+            // Implement pages
+            for (var i = 0; i < this.$carouselItems.length; i++) {
+                
+                // Checks for current item's index relative to the page limit
+                var itemPageIndex = i % itemsPerPage;
+
+                $(this.$carouselItems.eq(i)).attr("data-page",pageCounter);
+
+                // If the item equals the page limit, update the page counter, unless it's also the last item
+                if((itemPageIndex === (itemsPerPage - 1)) && (i < (this.$carouselItems.length - 1))) {
+                    pageCounter++;
+                }
+            }    
+
+        },
+
+        switchPage: function(){
+            var direction = $(this).parent().hasClass("previous") ? "previous" : "next",
+                pageWidth = $element.parent().outerWidth(),
+                itemPadding = parseInt($element.children().first().css("padding-left").replace("px",""));
+
+            if(direction==="next"){
+                var moveDistance = pageWidth - itemPadding;
+                $element.stop().animate({left: -moveDistance}, 1000, function(){
+                    $element.css('left','10px');
+                    $itemsToMove = $("[data-page="+$element.children("li:first").attr('data-page')+']');
+                    $itemsToMove.appendTo($element);
+                });
+            }else{
+                var moveDistance = pageWidth + itemPadding;
+                $itemsToMove = $("[data-page="+$element.children("li:last").attr('data-page')+']');
+                $itemsToMove.prependTo($element);
+                $element.css('left',-moveDistance);
+                $element.stop().animate({left: '10'}, 1000);
+
+            }
+            
+
+            //console.log(pageWidth);
+            //console.log($('[data-page="'++'"]'));
+            //this.movePreviousPageItems(direction);
+            //$element.css({left:-moveDistance});
+        },
+
+        //movePreviousPageItems: function(direction){
+            //var $itemsToMove = null;
+
+            //console.log(this.$carouselItems.last());
+        //},       
+
+        resizeCarousel: function (itemsPerPage, deviceType){
             var carouselItemsTotalWidth = 0,
                 tallestItemHeight = 0,
                 $carouselItems = this.$carousel.children(this.carouselItemClass),
                 carouselItemsLength = $carouselItems.length
 
+                $carouselItems.each(function(){
 
-            for (var i = 0; i < carouselItemsLength; i++) {                        
-                //Reset height of list item to auto if previously set to static height
-                $carouselItems.eq(i).height("auto");
-                
-                //Find the tallest item by comparing the current item's height with the previous tallest.
-                tallestItemHeight = $carouselItems.eq(i).height() > tallestItemHeight?$carouselItems.eq(i).height():tallestItemHeight;
-                
-                //Get each element's width and add it to a total width of the carousel.
-                carouselItemsTotalWidth = carouselItemsTotalWidth + $carouselItems.eq(i).outerWidth();
-            };
+                    //Reset height of list item to auto if previously set to static height
+                    $(this).height("auto");
+
+                    //Find the tallest item by comparing the current item's height with the previous tallest.
+                    tallestItemHeight = $(this).height() > tallestItemHeight?$(this).height():tallestItemHeight;
+                    
+                    //Get each element's width and add it to a total width of the carousel.
+                    carouselItemsTotalWidth = carouselItemsTotalWidth + $(this).outerWidth();
+                });
+
 
             //Set all elements within the carousel to the height of the tallest item
             $carouselItems.height(tallestItemHeight);
@@ -105,9 +164,12 @@
                 // So reset the width of the carousel to auto so the carousel can only ever be the width of a single image. 
                 
                 this.$carousel.css({"width":"auto"});
-            } 
+            }
+
+            this.createPages(itemsPerPage); 
         }
-    };
+    },
+
 
 
     // A really lightweight plugin wrapper around the constructor,
