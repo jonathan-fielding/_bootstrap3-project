@@ -114,6 +114,19 @@
             }
         },
 
+        checkForIncompletePage: function(itemsPerPage){
+            var noOfItemsOnIncompletePage = $element.children().length % itemsPerPage,
+                noOfItemsToAdd = itemsPerPage - noOfItemsOnIncompletePage,
+                noOfPages = $element.children().length / itemsPerPage+1;
+
+                if(noOfItemsOnIncompletePage!==0){
+                    for (var i = 0; i < noOfItemsToAdd; i++) {
+                        $element.children().eq(i).clone(true).attr("data-page", Math.floor(noOfPages)).attr("data-original-order", $element.children().length+1).addClass("clone").appendTo($element);
+                    };
+                }
+
+        },
+
         resizeCarousel: function (itemsPerPage, deviceType){
             var carouselItemsTotalWidth = 0,
                 tallestItemHeight = 0,
@@ -153,8 +166,8 @@
                 
                 this.$carousel.css({"width":"auto"});
             }
-
-            this.createPages(itemsPerPage); 
+            this.createPages(itemsPerPage);
+            this.checkForIncompletePage(itemsPerPage); 
         }
     },
 
