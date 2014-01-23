@@ -15,6 +15,7 @@
         this._defaults = defaults;
         this._name = pluginName;
         this.init();
+
     }
 
     Plugin.prototype = {
@@ -95,17 +96,17 @@
         switchPage: function(){
             var direction = $(this).parent().hasClass("previous") ? "previous" : "next",
                 pageWidth = $element.parent().outerWidth(),
-                itemPadding = parseInt($element.children().first().css("padding-left").replace("px",""));
+                itemPadding = parseInt($element.children().first().css("padding-left").replace("px","")),
+                moveDistance = pageWidth - itemPadding;
 
             if(direction==="next"){
-                var moveDistance = pageWidth - itemPadding;
+
                 $element.stop().animate({left: -moveDistance}, 1000, function(){
                     $element.css('left','10px');
                     $itemsToMove = $("[data-page="+$element.children("li:first").attr('data-page')+']');
                     $itemsToMove.appendTo($element);
                 });
             }else{
-                var moveDistance = pageWidth + itemPadding;
                 $itemsToMove = $("[data-page="+$element.children("li:last").attr('data-page')+']');
                 $itemsToMove.prependTo($element);
                 $element.css('left',-moveDistance);
@@ -122,7 +123,7 @@
                 if(noOfItemsOnIncompletePage!==0){
                     for (var i = 0; i < noOfItemsToAdd; i++) {
                         $element.children().eq(i).clone(true).attr("data-page", Math.floor(noOfPages)).attr("data-original-order", $element.children().length+1).addClass("clone").appendTo($element);
-                    };
+                    }
                 }
 
         },
