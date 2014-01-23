@@ -1,3 +1,15 @@
+.no-js .carousel-container{
+	display:block;
+}
+
+.js .carousel-container{
+	display:none;
+
+	&.enabled{
+		display:block;
+	}
+}
+
 .carousel-container{
 	&.enabled{
 		overflow:hidden;

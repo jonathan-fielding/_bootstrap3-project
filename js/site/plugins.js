@@ -42,7 +42,6 @@
             //Add enabled class to Carousel's containing element which will apply further styles for users with JS
             this.$carouselContainer.addClass("enabled");
 
-            
             //If controls are enabled then create them
             if(controls){
                 var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
