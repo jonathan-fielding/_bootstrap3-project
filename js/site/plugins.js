@@ -22,10 +22,25 @@
 
         init: function() {
             this.setupCarousel();
-            enquire
-            .register("screen and (max-width:767px)", $.proxy(this.onEnterMobile,this))
-            .register("screen and (min-width:768px) and (max-width:991px)", $.proxy(this.onEnterTablet,this))
-            .register("screen and (min-width:992px)", $.proxy(this.onEnterDesktop,this))
+            ssm.addStates([
+                {
+                    id: 'mobile',
+                    maxWidth: 767,
+                    onEnter:  $.proxy(this.onEnterMobile,this)
+                },            
+                {
+                    id: 'tablet',
+                    maxWidth: 991,
+                    minWidth: 768,
+                    onEnter:  $.proxy(this.onEnterTablet,this)
+                },
+                {
+                    id: 'desktop',
+                    minWidth: 992,
+                    onEnter:  $.proxy(this.onEnterDesktop,this)
+                }
+            ]);
+            ssm.ready();
         },
 
 
@@ -93,24 +108,52 @@
         },
 
         switchPage: function(){
-            var direction = $(this).parent().hasClass("previous") ? "previous" : "next",
-                pageWidth = $element.parent().outerWidth(),
-                itemPadding = parseInt($element.children().first().css("padding-left").replace("px","")),
-                moveDistance = pageWidth - itemPadding;
+            var 
+            direction = $(this).parent().hasClass("previous") ? "previous" : "next",
+            pageWidth = $element.parent().outerWidth(),
+            itemPadding = parseInt($element.children().first().css("padding-left").replace("px","")),
+            moveDistance = pageWidth - itemPadding;
+
 
             if(direction==="next"){
 
-                $element.stop().animate({left: -moveDistance}, 1000, function(){
-                    $element.css('left','10px');
-                    $itemsToMove = $("[data-page="+$element.children("li:first").attr('data-page')+']');
-                    $itemsToMove.appendTo($element);
-                });
-            }else{
-                $itemsToMove = $("[data-page="+$element.children("li:last").attr('data-page')+']');
-                $itemsToMove.prependTo($element);
-                $element.css('left',-moveDistance);
-                $element.stop().animate({left: '10'}, 1000);
+                if(ssm.isActive('mobile')){
+                    console.log("next mobile");
+                    $element.stop().animate(1000, function(){
+                        $element.children("li").css({"visibility":"hidden"});
+                        $itemsToMove = $("[data-page="+$element.children("li:first").attr('data-page')+']');
+                        $itemsToMove.appendTo($element);
+                        $element.children("li:first").css({"visibility":"visible"});
+                    });    
+                }
+                else{
+                    $element.stop().animate({left: -moveDistance}, 1000, function(){
+                        $element.css('left','10px');
+                        $itemsToMove = $("[data-page="+$element.children("li:first").attr('data-page')+']');
+                        $itemsToMove.appendTo($element);
+                    });
+                }
 
+            }
+            //If direction==="previous"
+            else{
+                if(ssm.isActive('mobile')){
+                    console.log("previous mobile");
+                    $element.stop().animate(1000, function(){
+                        $element.children("li").css({"visibility":"hidden"});
+                        $itemsToMove = $("[data-page="+$element.children("li:last").attr('data-page')+']');
+                        $itemsToMove.prependTo($element);
+                        $element.children("li:first").css({"visibility":"visible"});
+                    });  
+
+
+                }
+                else{
+                    $itemsToMove = $("[data-page="+$element.children("li:last").attr('data-page')+']');
+                    $itemsToMove.prependTo($element);
+                    $element.css('left',-moveDistance);
+                    $element.stop().animate({left: '10'}, 1000);
+                }
             }
         },
 
@@ -134,6 +177,11 @@
                 carouselItemsLength = $carouselItems.length
 
                 $carouselItems.each(function(){
+                    
+                    //If this item is a clone remove it. It would be a cloned item from another device view and is not required. Any clones for this device view will be created later
+                    if($(this).hasClass("clone")){
+                        $(this).remove();
+                    }
 
                     //Reset height of list item to auto if previously set to static height
                     $(this).height("auto");
