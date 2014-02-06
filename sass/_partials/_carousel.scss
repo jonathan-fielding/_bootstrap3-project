@@ -55,7 +55,7 @@
 				width:20px;
 				height:20px;
 				padding:10px;
-				background-color:#FF0;
+				background-color:#FF0000;
 				display:block;
 				@include box-sizing(content-box);
 
@@ -76,6 +76,12 @@
 			.item{
 				padding:0;
 				width:100%;
+				background-color:#FFFFFF;
+				z-index:1;
+
+				&:first-child{
+					z-index:3;
+				}
 			}
 		}
 
@@ -85,11 +91,6 @@
 					position:absolute;
 					top:0px;
 					left:0px;
-					visibility:hidden;
-
-					&:first-child{
-						visibility:visible;
-					}
 				}
 			}
 		}		

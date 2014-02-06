@@ -22,6 +22,10 @@
 
         init: function() {
             this.setupCarousel();
+            
+            //This plugin has a dependency on another plugin Simple State Manager 2.2.1 by Jonathan Fielding - http://www.simplestatemanager.com/
+            //Simple State Manager is a javascript state manager for responsive websites. It allows different functions to be called based on device 'state'.
+
             ssm.addStates([
                 {
                     id: 'mobile',
@@ -46,12 +50,13 @@
 
 
         setupCarousel: function(){
-            var controls = this.settings.controls
-                this.carouselItemClass = this.settings.carouselItemClass
-                this.$carousel = $(this.element),
-                this.$carouselContainer = this.$carousel.parent(),
-                this.$carouselItems = this.$carousel.children(this.carouselItemClass),
-                this.$pageWidth = this.$carouselContainer.outerWidth(),
+            var 
+            controls = this.settings.controls
+            this.carouselItemClass = this.settings.carouselItemClass
+            this.$carousel = $(this.element),
+            this.$carouselContainer = this.$carousel.parent(),
+            this.$carouselItems = this.$carousel.children(this.carouselItemClass),
+            this.$pageWidth = this.$carouselContainer.outerWidth(),
 
 
             //Add enabled class to Carousel's containing element which will apply further styles for users with JS
@@ -71,21 +76,19 @@
         },
 
         onEnterMobile: function (){
-            var itemsPerPage = this.settings.itemsPerPageOnMobile,
-                deviceType = "mobile";
-                this.resizeCarousel(itemsPerPage, deviceType);
+            var itemsPerPage = this.settings.itemsPerPageOnMobile;
+                this.$carousel.css("left","auto");
+                this.resizeCarousel(itemsPerPage);
         },
 
         onEnterTablet: function (){
-            var itemsPerPage = this.settings.itemsPerPageOnTablet,
-                deviceType = "tablet";
-                this.resizeCarousel(itemsPerPage, deviceType);         
+            var itemsPerPage = this.settings.itemsPerPageOnTablet;
+                this.resizeCarousel(itemsPerPage);         
         },
 
         onEnterDesktop: function (){
-             var itemsPerPage = this.settings.itemsPerPageOnDesktop,
-                 deviceType = "desktop";
-                 this.resizeCarousel(itemsPerPage, deviceType);
+             var itemsPerPage = this.settings.itemsPerPageOnDesktop;
+                 this.resizeCarousel(itemsPerPage);
         },
 
         createPages: function(itemsPerPage){
@@ -118,13 +121,12 @@
             if(direction==="next"){
 
                 if(ssm.isActive('mobile')){
-                    console.log("next mobile");
-                    $element.stop().animate(1000, function(){
-                        $element.children("li").css({"visibility":"hidden"});
-                        $itemsToMove = $("[data-page="+$element.children("li:first").attr('data-page')+']');
-                        $itemsToMove.appendTo($element);
-                        $element.children("li:first").css({"visibility":"visible"});
-                    });    
+                    $element.children().eq(1).css("z-index","2");
+                    $element.children().eq(0).stop().animate({opacity: 0 }, 1000, function(){
+                        $(this).appendTo($element);
+                        $element.children().css({"z-index":"1", "opacity":"1"});
+                        $element.children().eq(0).css("z-index","3");
+                    });
                 }
                 else{
                     $element.stop().animate({left: -moveDistance}, 1000, function(){
@@ -138,15 +140,11 @@
             //If direction==="previous"
             else{
                 if(ssm.isActive('mobile')){
-                    console.log("previous mobile");
-                    $element.stop().animate(1000, function(){
-                        $element.children("li").css({"visibility":"hidden"});
-                        $itemsToMove = $("[data-page="+$element.children("li:last").attr('data-page')+']');
-                        $itemsToMove.prependTo($element);
-                        $element.children("li:first").css({"visibility":"visible"});
-                    });  
-
-
+                    $element.children().eq(0).stop().animate({opacity: 0}, 1000, function(){
+                        $element.children(":last").prependTo($element);
+                        $element.children().css({"z-index":"1", "opacity":"1"});
+                        $element.children().eq(0).css("z-index","3");
+                    });
                 }
                 else{
                     $itemsToMove = $("[data-page="+$element.children("li:last").attr('data-page')+']');
@@ -162,19 +160,30 @@
                 noOfItemsToAdd = itemsPerPage - noOfItemsOnIncompletePage,
                 noOfPages = $element.children().length / itemsPerPage+1;
 
+                //If an imcomplete page is found, loop through the number of items required, clone that amount of items from the start of the carousel and add them to the end. 
                 if(noOfItemsOnIncompletePage!==0){
                     for (var i = 0; i < noOfItemsToAdd; i++) {
-                        $element.children().eq(i).clone(true).attr("data-page", Math.floor(noOfPages)).attr("data-original-order", $element.children().length+1).addClass("clone").appendTo($element);
+                        if(i<$element.children().length){
+                            $element.children().eq(i).clone(true).attr("data-page", Math.floor(noOfPages)).attr("data-original-order", $element.children().length+1).addClass("clone").appendTo($element);
+                        }
+                        
                     }
                 }
 
         },
 
-        resizeCarousel: function (itemsPerPage, deviceType){
+        resizeCarousel: function (itemsPerPage){
             var carouselItemsTotalWidth = 0,
                 tallestItemHeight = 0,
                 $carouselItems = this.$carousel.children(this.carouselItemClass),
                 carouselItemsLength = $carouselItems.length
+
+                //As resizeCarousel runs on change of device state - e.g - desktop to tablet view - Reset the carousel to the first slide(s) on stage change
+                $carouselItems.detach().sort(function(a,b){
+                    return $(a).attr('data-original-order') - $(b).attr('data-original-order');
+                });
+
+                this.$carousel.append($carouselItems);  
 
                 $carouselItems.each(function(){
                     
@@ -200,7 +209,7 @@
             //Set the height of the carousel container to the height of its tallest item.
             this.$carouselContainer.height(tallestItemHeight);
 
-            if(deviceType!=="mobile"){
+            if(!ssm.isActive('mobile')){
                 //Set the width of the carousel to the sum of the widths of its content. This will create a strip of list items all side by side. 
                 this.$carousel.css({"width":carouselItemsTotalWidth});
             }
