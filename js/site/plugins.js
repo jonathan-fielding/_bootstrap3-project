@@ -23,6 +23,7 @@
         init: function() {
             this.setupCarousel();
             
+            //Put this in the readme.md file for the plugin, in the source it is never read and you should be distributing the minified versions so it will be removed
             //This plugin has a dependency on another plugin Simple State Manager 2.2.1 by Jonathan Fielding - http://www.simplestatemanager.com/
             //Simple State Manager is a javascript state manager for responsive websites. It allows different functions to be called based on device 'state'.
 
@@ -30,38 +31,39 @@
                 {
                     id: 'mobile',
                     maxWidth: 767,
-                    onEnter:  $.proxy(this.onEnterMobile,this)
+                    onEnter:  $.proxy(this.onEnterMobile,this) //While this is good, your using jQuery, you could do with learninn about .bind so you know how to do this in pure js
                 },            
                 {
                     id: 'tablet',
                     maxWidth: 991,
                     minWidth: 768,
-                    onEnter:  $.proxy(this.onEnterTablet,this)
+                    onEnter:  $.proxy(this.onEnterTablet,this)//While this is good, your using jQuery, you could do with learninn about .bind so you know how to do this in pure js
                 },
                 {
                     id: 'desktop',
                     minWidth: 992,
-                    onEnter:  $.proxy(this.onEnterDesktop,this)
+                    onEnter:  $.proxy(this.onEnterDesktop,this)//While this is good, your using jQuery, you could do with learninn about .bind so you know how to do this in pure js
                 }
             ]);
             ssm.ready();
         },
 
 
-
         setupCarousel: function(){
-            var 
-            controls = this.settings.controls
+            var controls = this.settings.controls
             this.carouselItemClass = this.settings.carouselItemClass
             this.$carousel = $(this.element),
             this.$carouselContainer = this.$carousel.parent(),
             this.$carouselItems = this.$carousel.children(this.carouselItemClass),
             this.$pageWidth = this.$carouselContainer.outerWidth(),
 
-
+            //Typically classes belonging to a plugin are prefixed with plugin name, e.g colorbox = .cbox-close etc 
+            //This is so that there are no clashes with the users codebase
+            
             //Add enabled class to Carousel's containing element which will apply further styles for users with JS
             this.$carouselContainer.addClass("enabled");
 
+            //You could take the same approach as twitter bootstrap that has you put the controls in the HTML, this means you dont need to generate HTML in your JS which is nasty
             //If controls are enabled then create them
             if(controls){
                 var $controls = $('<ul/>',{'class':'carousel-controls clearfix'});
@@ -78,17 +80,17 @@
         onEnterMobile: function (){
             var itemsPerPage = this.settings.itemsPerPageOnMobile;
                 this.$carousel.css("left","auto");
-                this.resizeCarousel(itemsPerPage);
+                this.resizeCarousel(itemsPerPage);//Good that you have reused code
         },
 
         onEnterTablet: function (){
             var itemsPerPage = this.settings.itemsPerPageOnTablet;
-                this.resizeCarousel(itemsPerPage);         
+                this.resizeCarousel(itemsPerPage);//Good that you have reused code         
         },
 
         onEnterDesktop: function (){
              var itemsPerPage = this.settings.itemsPerPageOnDesktop;
-                 this.resizeCarousel(itemsPerPage);
+                 this.resizeCarousel(itemsPerPage);//Good that you have reused code
         },
 
         createPages: function(itemsPerPage){
@@ -112,12 +114,12 @@
 
         switchPage: function(){
             var 
-            direction = $(this).parent().hasClass("previous") ? "previous" : "next",
+            direction = $(this).parent().hasClass("previous") ? "previous" : "next", //Check direction based on a data attribute, will be simpler to read this line and a next and previous class could cause issues in some use cases
             pageWidth = $element.parent().outerWidth(),
             itemPadding = parseInt($element.children().first().css("padding-left").replace("px","")),
             moveDistance = pageWidth - itemPadding;
 
-
+            //For these animations you could consider using CSS3 animations, older browsers just wont receive the annimations
             if(direction==="next"){
 
                 if(ssm.isActive('mobile')){
@@ -137,6 +139,7 @@
                 }
 
             }
+            //If you need this as a comment, just change the else to an else if, let the code document itself
             //If direction==="previous"
             else{
                 if(ssm.isActive('mobile')){
@@ -160,6 +163,7 @@
                 noOfItemsToAdd = itemsPerPage - noOfItemsOnIncompletePage,
                 noOfPages = $element.children().length / itemsPerPage+1;
 
+                //As discussed, just move 1 item at a time
                 //If an imcomplete page is found, loop through the number of items required, clone that amount of items from the start of the carousel and add them to the end. 
                 if(noOfItemsOnIncompletePage!==0){
                     for (var i = 0; i < noOfItemsToAdd; i++) {
@@ -171,13 +175,15 @@
                 }
 
         },
-
+        
+        //Your doing a lot on your on resize, you need to look at reducing this
         resizeCarousel: function (itemsPerPage){
             var carouselItemsTotalWidth = 0,
                 tallestItemHeight = 0,
                 $carouselItems = this.$carousel.children(this.carouselItemClass),
                 carouselItemsLength = $carouselItems.length
 
+                //Resorting on browser resize will be heavy on the rendering engine, if you wanted to reset to original order, cache the original items somewhere and just readd these to the DOM overwriting what is there
                 //As resizeCarousel runs on change of device state - e.g - desktop to tablet view - Reset the carousel to the first slide(s) on stage change
                 $carouselItems.detach().sort(function(a,b){
                     return $(a).attr('data-original-order') - $(b).attr('data-original-order');
@@ -185,6 +191,7 @@
 
                 this.$carousel.append($carouselItems);  
 
+                //A normal for loop would be better for performance
                 $carouselItems.each(function(){
                     
                     //If this item is a clone remove it. It would be a cloned item from another device view and is not required. Any clones for this device view will be created later
@@ -192,6 +199,7 @@
                         $(this).remove();
                     }
 
+                    //You could reset all of the items before hand
                     //Reset height of list item to auto if previously set to static height
                     $(this).height("auto");
 
@@ -203,6 +211,7 @@
                 });
 
 
+            //The height can come from your CSS, the only time your height would need to be dynamic is on mobile where you can use the padding-bottom trick
             //Set all elements within the carousel to the height of the tallest item
             $carouselItems.height(tallestItemHeight);
 
